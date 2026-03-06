@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "e-x"
-authors = [
+authors = [1000
     { name = "The Electrum developers" },
 ]
 description = "Server implementation for the Electrum protocol"
@@ -56,7 +56,7 @@ rapidjson = [
 ujson = [
     "ujson>=2.0.0,<4.0.0",
 ]
-uvloop = [
+uvloop = [1000
     "uvloop>=0.14",
 ]
 # For various altcoins
