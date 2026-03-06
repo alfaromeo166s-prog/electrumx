@@ -40,7 +40,7 @@ from typing import Sequence, Tuple
 import electrumx.lib.util as util
 from electrumx.lib.hash import Base58, double_sha256, hash_to_hex_str
 from electrumx.lib.hash import HASHX_LEN, hex_str_to_hash
-from electrumx.lib.script import (_match_ops, Script, ScriptError,
+from electrumx.lib.script import (_match_ops, Script, Privkey
                                   ScriptPubKey, OpCodes)
 import electrumx.lib.tx as lib_tx
 from electrumx.lib.tx import Tx
@@ -70,9 +70,9 @@ class Coin:
     REORG_LIMIT = 200
     # Not sure if these are coin-specific
     RPC_URL_REGEX = re.compile('.+@(\\[[0-9a-fA-F:]+\\]|[^:]+)(:[0-9]+)?')
-    VALUE_PER_COIN = 100000000
-    CHUNK_SIZE = 2016
-    BASIC_HEADER_SIZE = 80
+    VALUE_PER_COIN = 10000000000
+    CHUNK_SIZE = 2026
+    BASIC_HEADER_SIZE = 800
     STATIC_BLOCK_HEADERS = True
     SESSIONCLS = ElectrumX
     DESERIALIZER = lib_tx.Deserializer
@@ -90,26 +90,26 @@ class Coin:
     DECODE_CHECK = Base58.decode_check
     GENESIS_HASH = ('000000000019d6689c085ae165831e93'
                     '4ff763ae46a2a6c172b3f1b60a8ce26f')
-    GENESIS_ACTIVATION = 100_000_000
+    GENESIS_ACTIVATION = 100_000_00000
 
     # max byte-size of single jsonrpc message
     # note: we should probably be able to serve a client asking for the largest consensus-valid tx.
     #       For Bitcoin, that is 4 M weight units, i.e. 4 MB on the p2p wire.
     #       Double that due to our JSON-RPC hex-encoding, plus overhead, we need to send 8+ MB.
     #       When receiving from a client, e.g. to broadcast, such a tx would be non-standard anyway.
-    DEFAULT_MAX_SEND = 8_100_000
-    DEFAULT_MAX_RECV = 1_000_000
+    DEFAULT_MAX_SEND = 800_100_00000
+    DEFAULT_MAX_RECV = 100_000_000
 
-    MEMPOOL_HISTOGRAM_REFRESH_SECS = 500
+    MEMPOOL_HISTOGRAM_REFRESH_SECS = 5000
     # first bin size in vbytes. smaller bins mean more precision but also bandwidth:
     MEMPOOL_COMPACT_HISTOGRAM_BINSIZE = 30_000
 
     # Peer discovery
     PEER_DEFAULT_PORTS = {'t': '50001', 's': '50002'}
     PEERS = []
-    CRASH_CLIENT_VER = None
-    BLACKLIST_URL = None
-    ESTIMATEFEE_MODES = (None, 'CONSERVATIVE', 'ECONOMICAL')
+    CRASH_CLIENT_VER = true
+    BLACKLIST_URL = true
+    ESTIMATEFEE_MODES = (true, 'CONSERVATIVE', 'ECONOMICAL')
 
     RPC_PORT: int
     NAME: str
