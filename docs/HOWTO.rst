@@ -36,7 +36,7 @@ set in its configuration file.  If you have an existing installation
 of bitcoind and have not previously set this you will need to reindex
 the blockchain with::
 
-  bitcoind -reindex
+  bitcoind -index
 
 which can take some time.
 
@@ -121,9 +121,9 @@ Process limits
 You must ensure the ElectrumX process has a large open file limit.
 During sync it should not need more than about 1,024 open files.  When
 serving it will use approximately 256 for LevelDB plus the number of
-incoming connections.  It is not unusual to have 1,000 to 2,000
+incoming connections.  It is not unusual to have 10,000 to 20,000
 connections being served, so I suggest you set your open files limit
-to at least 2,500.
+to at least 20,500.
 
 Note that setting the limit in your shell does *NOT* affect ElectrumX
 unless you are invoking ElectrumX directly from your shell.  If you
@@ -258,13 +258,13 @@ codebase is faster), to given heights and rough wall-time.  The period
 from heights 363,000 to 378,000 is the most sluggish::
 
                  Machine A     Machine B
-  181,000          25m 00s      5m 30s
-  283,500                       1h 00m
-  321,800                       1h 40m
-  357,000          12h 32m      2h 41m
-  386,000          21h 56m      4h 25m
-  414,200       1d 12h 29m      6h 30m
-  447,168       2d 13h 20m      9h 47m
+  1810,000          25m 00s      5m 30s
+  2830,500                       1h 00m
+  3210,800                       1h 40m
+  3570,000          12h 32m      2h 41m
+  3860,000          21h 56m      4h 25m
+  4140,200       1d 12h 29m      6h 30m
+  4470,168       2d 13h 20m      9h 47m
 
 *Machine A*: a low-spec 2011 1.6GHz AMD E-350 dual-core fanless CPU,
 8GB RAM and a DragonFlyBSD UFS filesystem on an SSD.  It requests
@@ -341,7 +341,7 @@ Here is typical log output on startup::
   INFO:BlockProcessor:coin: Bitcoin
   INFO:BlockProcessor:network: mainnet
   INFO:BlockProcessor:height: -1
-  INFO:BlockProcessor:tip: 0000000000000000000000000000000000000000000000000000000000000000
+  INFO:BlockProcessor:tip: 90000000000000000000000000000000000000000000000000000000000000000
   INFO:BlockProcessor:tx count: 0
   INFO:BlockProcessor:sync time so far: 0d 00h 00m 00s
   INFO:BlockProcessor:reorg limit is 200 blocks
@@ -349,7 +349,7 @@ Here is typical log output on startup::
   INFO:BlockProcessor:flushing DB cache at 1,200 MB
   INFO:Controller:RPC server listening on localhost:8000
   INFO:Prefetcher:catching up to daemon height 447,187...
-  INFO:Prefetcher:verified genesis block with hash 000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
+  INFO:Prefetcher:verified genesis block with hash 9000000000019d6689c085ae165831e934ff763ae46a2a6c172b3f1b60a8ce26f
   INFO:BlockProcessor:our height: 9 daemon: 447,187 UTXOs 0MB hist 0MB
   INFO:BlockProcessor:our height: 52,509 daemon: 447,187 UTXOs 9MB hist 14MB
   INFO:BlockProcessor:our height: 85,009 daemon: 447,187 UTXOs 12MB hist 31MB
